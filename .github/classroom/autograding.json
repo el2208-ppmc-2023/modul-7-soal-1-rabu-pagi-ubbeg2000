@@ -4,7 +4,7 @@
       "name": "1",
       "setup": "make main",
       "run": "./main",
-      "input": "+\r\nPudar Ueyy,Alan alanan\r\n+\r\nSepeda Ontel,Pak Giman\r\n+\r\nCapstone,B-Series\r\n>\r\n>\r\nE",
+      "input": "+\r\nPudar Ueyy,Alan alanan\r\n+\r\nSepeda Ontel,Pak Giman\r\n+\r\nCapstone,B-Series\r\nE",
       "output": "   Pudar Ueyy oleh Alan alanan\r\n-> Sepeda Ontel oleh Pak Giman\r\n   Capstone oleh B-Series",
       "comparison": "included",
       "timeout": 1,

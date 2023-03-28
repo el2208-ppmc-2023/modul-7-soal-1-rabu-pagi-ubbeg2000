@@ -125,7 +125,7 @@ int main()
         {
             printf("Masukkan Nama Lagu dan Penyanyi: ");
             scanf("%c", &temp);
-            scanf("%[^\n]", str);
+            scanf("%[^\n]%*c", str);
             
             printf("%s\n", str);
 //             for (int i = 0; i < strlen(str); i++)

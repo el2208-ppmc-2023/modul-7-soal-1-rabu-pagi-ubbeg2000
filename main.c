@@ -128,14 +128,14 @@ int main()
             scanf("%[^\n]", str);
 
             token = strtok(str, ",");
-            printf("%s\n", token);
+//             printf("%s\n", token);
 //             for (int i = 0; i < strlen(str); i++)
 //             {
 //                 songBuf.penyanyi[i] = token[i];
 //             }
             
             token = strtok(NULL, "\0");
-            printf("%s\n", token);
+//             printf("%s\n", token);
 //             for (int i = 0; i < strlen(token); i++)
 //             {
 //                 songBuf.judul[i] = token[i];

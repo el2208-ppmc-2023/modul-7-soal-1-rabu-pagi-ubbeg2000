@@ -126,6 +126,12 @@ int main()
             printf("Masukkan Nama Lagu dan Penyanyi: ");
             scanf("%c", &temp);
             scanf("%[^\n]", str);
+            
+            printf("%s\n", str);
+//             for (int i = 0; i < strlen(str); i++)
+//             {
+//                 if (str[i] != )
+//             }
 
             token = strtok(str, ",");
 //             printf("%s\n", token);

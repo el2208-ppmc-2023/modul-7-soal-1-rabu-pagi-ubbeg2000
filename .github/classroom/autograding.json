@@ -4,7 +4,7 @@
       "name": "1",
       "setup": "make main",
       "run": "./main",
-      "input": "E",
+      "input": ">\r\nE",
       "output": "   Pudar Ueyy oleh Alan alanan\r\n-> Sepeda Ontel oleh Pak Giman\r\n   Capstone oleh B-Series",
       "comparison": "included",
       "timeout": 1,

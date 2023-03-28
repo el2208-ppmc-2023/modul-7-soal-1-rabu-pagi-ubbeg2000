@@ -128,9 +128,9 @@ int main()
             scanf("%[^\n]", str);
 
             token = strtok(str, ",");
-            strcpy(songBuf.penyanyi, token);
+            // strcpy(songBuf.penyanyi, token);
             token = strtok(NULL, "\0");
-            strcpy(songBuf.judul, token);
+            // strcpy(songBuf.judul, token);
 
             // push(currPlaylist, songBuf);
             numberofsong++;

@@ -131,12 +131,10 @@ int main()
 
             token = strtok(str, ",");
             strcpy(songBuf.penyanyi, token);
-            token = strtok(NULL, ",");
+            token = strtok(NULL, "\0");
             strcpy(songBuf.judul, token);
 
-            // Masukkan ke dalam Stack
             push(currPlaylist, songBuf);
-            // Update jumlah lagu
             numberofsong++;
             break;
 
@@ -173,7 +171,6 @@ int main()
                 pop(currPlaylist);
                 numberofsong--;
             }
-
             break;
 
         case 'E':

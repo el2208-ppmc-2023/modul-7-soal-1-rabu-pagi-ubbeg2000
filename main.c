@@ -54,7 +54,6 @@ void pop(stack *playlist)
 
 void showPlaylist(stack *playlist, int playIndex)
 {
-
     node *tmp;
     int i = 0;
     tmp = playlist->top;
@@ -82,13 +81,13 @@ void showPlaylist(stack *playlist, int playIndex)
     {
         if (i == playIndex)
         {
-            printf("-> %s oleh %s",
+            printf("-> %s oleh %s\n",
                    tmp->songData.penyanyi,
                    tmp->songData.judul);
         }
         else
         {
-            printf("   %s oleh %s",
+            printf("   %s oleh %s\n",
                    tmp->songData.penyanyi,
                    tmp->songData.judul);
         }
@@ -126,8 +125,6 @@ int main()
             printf("Masukkan Nama Lagu dan Penyanyi: ");
             scanf("%c", &temp);
             scanf("%[^\n]", str);
-            char ch = '\n';
-            strncat(str, &ch, 1);
 
             token = strtok(str, ",");
             strcpy(songBuf.penyanyi, token);
@@ -180,5 +177,6 @@ int main()
             break;
         }
     }
+    printf("LOBEBE\n");
     return 0;
 }

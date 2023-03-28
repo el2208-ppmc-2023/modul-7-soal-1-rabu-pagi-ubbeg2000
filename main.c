@@ -140,7 +140,7 @@ int main()
             }
             // strcpy(songBuf.judul, token);
 
-            push(currPlaylist, songBuf);
+            // push(currPlaylist, songBuf);
             numberofsong++;
             break;
         }

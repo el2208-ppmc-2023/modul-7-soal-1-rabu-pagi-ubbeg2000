@@ -1,210 +1,203 @@
-/** EL2208 Praktikum Pemecahan Masalah dengan C 2022/2023
- *   Modul               :
- *   Hari dan Tanggal    :
- *   Nama (NIM)          :
- *   Nama File           : main.c
- *   Deskripsi           :
- */
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
-struct song
+// Inisiasi stack dan queue
+typedef struct Node
 {
-    char penyanyi[25];
-    char judul[50];
-};
+    char imigran[20];
+    struct Node *next;
+} Node;
 
-typedef struct node_stack
+typedef struct
 {
-    struct node_stack *nextNode;
-    struct song songData;
+    Node *head;
+} Stack;
 
-} node;
-
-typedef struct stack_playlist
+typedef struct
 {
-    struct node_stack *top;
+    Node *head;
+    Node *tail;
+} Queue;
 
-} stack;
+// Silakan manfaatkan template kode tutorial modul
+// berikut jika dirasa mempermudah pengerjaan
 
-int isEmptyPlaylist(stack *playlist)
+// cek kondisi stack kosong
+int isStackEmpty(Stack *stack)
 {
-    return (playlist->top == NULL ? 1 : 0);
+    return stack->head == NULL;
 }
 
-void push(stack *playlist, struct song _songData)
+// memindahkan data file ke dalam stack
+void push(Stack *stack, const char *new_data)
 {
-    node *newNode;
-    newNode = malloc(sizeof(struct node_stack));
-    newNode->songData = _songData;
-    newNode->nextNode = playlist->top;
-    playlist->top = newNode;
+    Node *new_node = (Node *)malloc(sizeof(Node));
+    strcpy(new_node->imigran, new_data);
+    new_node->next = stack->head;
+    stack->head = new_node;
 }
 
-void pop(stack *playlist)
+// Next, mengambil data paling atas stack
+char *pop(Stack *stack)
 {
-    node *tmp;
-    tmp = playlist->top;
-    playlist->top = tmp->nextNode;
-
-    free(tmp);
-}
-
-void showPlaylist(stack *playlist, int playIndex)
-{
-    node *tmp;
-    int i = 0;
-    tmp = playlist->top;
-
-    printf("\nNow Playing:\n");
-    if (isEmptyPlaylist(playlist))
+    char *ret_val = NULL;
+    Node *temp = stack->head;
+    if (temp != NULL)
     {
-        printf("Playlist kosong! Tambahkan lagu!\n");
-        return;
+        ret_val = (char *)malloc(strlen(temp->imigran) + 1);
+        strcpy(ret_val, temp->imigran);
+        stack->head = temp->next;
+        free(temp);
     }
+    return (ret_val);
+}
 
-    // Reverse Stack untuk menampilkan secara FIFO
-    stack *reversed_display;
-    reversed_display = malloc(sizeof(stack *));
-    reversed_display->top = NULL;
-    while (tmp != NULL)
+// untuk debugging
+void printStack(Stack *stack)
+{
+    Node *current = stack->head;
+    int i = 1;
+    while (current != NULL)
     {
-        push(reversed_display, tmp->songData);
-        tmp = tmp->nextNode;
+        printf("%d %s\n", i, current->imigran);
+        current = current->next;
+        i++;
     }
+    printf("\n");
+}
 
-    // Tampilkan playlist dari hasil reverse stack
-    tmp = reversed_display->top;
-    while (tmp != NULL)
+// cek kondisi queue kosong
+int isQueueEmpty(Queue *queue)
+{
+    return queue->head == NULL;
+}
+
+// Next, memasukkan data ke akhir queue
+void enqueue(Queue *queue, const char *new_data)
+{
+    Node *new_node = (Node *)malloc(sizeof(Node));
+    strcpy(new_node->imigran, new_data);
+    new_node->next = NULL;
+    if (!isQueueEmpty(queue))
     {
-        if (i == playIndex)
-        {
-            printf("-> %s oleh %s\n",
-                   tmp->songData.penyanyi,
-                   tmp->songData.judul);
-        }
-        else
-        {
-            printf("   %s oleh %s\n",
-                   tmp->songData.penyanyi,
-                   tmp->songData.judul);
-        }
-        tmp = tmp->nextNode;
+        queue->tail->next = new_node;
+        queue->tail = new_node;
+    }
+    else
+    {
+        queue->tail = new_node;
+        queue->head = new_node;
+    }
+}
+
+// Done, menghapus data di awal queue
+char *dequeue(Queue *queue)
+{
+    char *ret_val = NULL;
+    Node *temp = queue->head;
+    if (temp != NULL)
+    {
+        ret_val = (char *)malloc(strlen(temp->imigran) + 1);
+        strcpy(ret_val, temp->imigran);
+        queue->head = temp->next;
+        if (temp == queue->tail)
+            queue->tail = NULL;
+        free(temp);
+    }
+    return ret_val;
+}
+
+// Observe, print isi queue
+void printQueue(Queue *queue)
+{
+    Node *current = queue->head;
+    int i = 1;
+    while (current != NULL)
+    {
+        printf("%d %s\n", i, current->imigran);
+        current = current->next;
         i++;
     }
 }
 
 int main()
 {
-    stack *currPlaylist;
-    char *token;
-    struct song songBuf;
-    char str[75];
-    currPlaylist = (stack *)malloc(sizeof(stack));
-    // Inisialisasi Stack
-    currPlaylist->top = NULL;
-    char temp;
+    // inisiasi
+    Stack *stack = (Stack *)malloc(sizeof(Stack));
+    stack->head = NULL;
+    Queue *queue = (Queue *)malloc(sizeof(Queue));
+    queue->head = NULL;
+    queue->tail = NULL;
 
-    char cmd = 'X';
-    int numberofsong = 0;
-    int nowIndex = -1;
-    printf("-*-_-*-_-*-_-*-Jooxtify-*-_-*-_-*-_-*-");
-
-    while (cmd != 'E')
+    // Input
+    char file[255];
+    // file
+    printf("Masukkan hari: ");
+    scanf("%s", &file);
+    FILE *stream = fopen(file, "r");
+    if (stream == NULL)
     {
-        showPlaylist(currPlaylist, nowIndex);
-
-        printf("\nMasukkan Perintah: ");
-        scanf("%c", &cmd);
-
-        switch (cmd)
-        {
-        case '+':
-        {
-            printf("Masukkan Nama Lagu dan Penyanyi: ");
-            scanf(" %[^\n]%*c", str);
-            
-            printf("%s\n", str);
-//             for (int i = 0; i < strlen(str); i++)
-//             {
-//                 if (str[i] != )
-//             }
-
-            token = strtok(str, ",");
-            strcpy(songBuf.penyanyi, token);
-//             printf("%s\n", token);
-//             for (int i = 0; i < strlen(str); i++)
-//             {
-//                 songBuf.penyanyi[i] = token[i];
-//             }
-            
-            token = strtok(NULL, "\0");
-            strcpy(songBuf.judul, token);
-//             printf("%s\n", token);
-//             for (int i = 0; i < strlen(token); i++)
-//             {
-//                 songBuf.judul[i] = token[i];
-//             }
-
-            push(currPlaylist, songBuf);
-            numberofsong++;
-            break;
-        }
-
-        case '>':
-        {
-            if (nowIndex >= numberofsong - 1)
-            {
-                nowIndex = 0;
-            }
-            else
-            {
-                nowIndex++;
-            }
-            break;
-        }
-        case '<':
-        {
-            if (nowIndex <= 0)
-            {
-                nowIndex = numberofsong - 1;
-            }
-            else if (nowIndex >= numberofsong - 1)
-            {
-                nowIndex = numberofsong - 1;
-            }
-            else
-            {
-                nowIndex--;
-            }
-            break;
-        }
-        case 'R':
-        {
-            nowIndex = 0;
-            break;
-        }
-        case '-':
-        {
-            if (numberofsong != 0)
-            {
-                pop(currPlaylist);
-                numberofsong--;
-            }
-            break;
-        }
-
-        case 'E':
-            break;
-        default:
-        {
-            printf("Masukan Perintah Tidak Valid!");
-            break;
-        }
-        }
+        printf("Hari libur!\n");
+        return 0;
     }
-    printf("LOBEBE\n");
+    // data
+    char line[255];
+    char *token;
+    int i = 0;
+    while (fgets(line, 255, stream))
+    {
+        token = strtok(line, "\n");
+        push(stack, token);
+    }
+    fclose(stream);
+
+    // uncomment untuk lihat isi stack
+    // printStack(stack);
+
+    // Program
+    int jumlah = 0;
+    char perintah[8];
+    printf("\n>> ");
+    scanf("%s", &perintah);
+    while (strcmp(perintah, "Rest"))
+    {
+        if (!strcmp(perintah, "Next"))
+        {
+            if (isStackEmpty(stack))
+            {
+                printf("Pengunjung habis!\n");
+            }
+            else
+            {
+                enqueue(queue, pop(stack));
+            }
+        }
+        if (!strcmp(perintah, "Done"))
+        {
+            if (isQueueEmpty(queue))
+            {
+                printf("Pos kosong!\n");
+            }
+            else
+            {
+                dequeue(queue);
+                jumlah++;
+            }
+        }
+        if (!strcmp(perintah, "Observe"))
+        {
+            printQueue(queue);
+        }
+        if (!strcmp(perintah, "Monitor"))
+        {
+            printf("Jumlah imigran adalah %d\n", jumlah);
+        }
+
+        printf("\n>> ");
+        scanf("%s", &perintah);
+    }
+    printf("Selesai");
+
     return 0;
 }

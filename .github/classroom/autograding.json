@@ -1,0 +1,104 @@
+{
+  "tests": [
+    {
+      "name": "1",
+      "setup": "make main",
+      "run": "./main",
+      "input": "+\r\nPudar Ueyy,Alan alanan\r\n+\r\nSepeda Ontel,Pak Giman\r\n+\r\nCapstone,B-Series\r\n>\r\n>\r\nE",
+      "output": "   Pudar Ueyy oleh Alan alanan\r\n-> Sepeda Ontel oleh Pak Giman\r\n   Capstone oleh B-Series",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 10
+    },
+    {
+      "name": "2",
+      "setup": "",
+      "run": "./main",
+      "input": "+\r\nPudar Ueyy,Alan alanan\r\n+\r\nSepeda Ontel,Pak Giman\r\n+\r\nCapstone,B-Series\r\n>\r\n>\r\n-\r\nR\r\nE",
+      "output": "-> Pudar Ueyy oleh Alan alanan\r\n   Sepeda Ontel oleh Pak Giman",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 10
+    },
+    {
+      "name": "3",
+      "setup": "",
+      "run": "./main",
+      "input": "+\r\nCicak-Cicak Didinding,Kaori\r\n>\r\n+\r\nDiam-diam\r\n>\r\n>\r\n-\r\nE",
+      "output": "-> Cicak-Cicak Didinding oleh Kaori",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 10
+    },
+    {
+      "name": "4",
+      "setup": "",
+      "run": "./main",
+      "input": "+\r\nNaik,Ke Puncak Gunung\r\n+\r\nTinggi Tinggi,Sekali Duakali\r\n>\r\n>\r\n-\r\n>\r\n-\r\nE",
+      "output": "Playlist kosong! Tambahkan lagu!",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 10
+    },
+    {
+      "name": "5",
+      "setup": "",
+      "run": "./main",
+      "input": "-\r\n+\r\nJangan Buat Aku Kecewa,Perokok Rantai\r\n>\r\n+\r\nMama Muda,Papa Muda\r\n>\r\n- \r\n>\r\n+  \r\n>\r\nR\r\nE",
+      "output": "-> Jangan Buat Aku Kecewa oleh Perokok Rantai\r\n   Kesedihan oleh Sia",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 10
+    },
+    {
+      "name": "6",
+      "setup": "",
+      "run": "./main",
+      "input": "+\r\nSatu Tambah Satu,Aku Sayang Ibu\r\n+\r\nDua Dua,Juga Sayang Ayah\r\n>\r\n>\r\n+\r\nTiga Tiga,Sayang Ayang\r\nR\r\n<\r\n-\r\n>\r\nE",
+      "output": "-> Satu Tambah Satu oleh Aku Sayang Ibu\r\n   Dua Dua oleh Juga Sayang Ayah",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 10
+    },
+    {
+      "name": "7",
+      "setup": "",
+      "run": "./main",
+      "input": "j\r\nk\r\n+\r\nSayang,Via Telepon\r\n>\r\n+\r\nSepertinya Bosan,KhanDar\r\n.\r\n>\r\n>\r\n<\r\nE",
+      "output": "Masukan Perintah Tidak Valid!",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 10
+    },
+    {
+      "name": "8",
+      "setup": "",
+      "run": "./main",
+      "input": "+\r\nHalo Halo Bandung, Ibukota Periangan\r\n+\r\nMaju Mundur Cantik,Syahrini\r\n>\r\n<\r\nR\r\n-\r\n-\r\nE",
+      "output": "Now Playing:\r\n   Halo Halo Bandung oleh  Ibukota Periangan\r\n-> Maju Mundur Cantik oleh Syahrini",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 10
+    },
+    {
+      "name": "9",
+      "setup": "",
+      "run": "./main",
+      "input": "-\r\n+\r\nKripik Kentang,Chitato\r\n+\r\nKripik Ubi,Qtella\r\n+\r\nKripik Singkong,Kusuka\r\nR\r\n>\r\n<\r\n<\r\n-\r\n-\r\n-\r\n-\r\nE",
+      "output": "Now Playing:\r\n   Kripik Kentang oleh Chitato\r\n   Kripik Ubi oleh Qtella",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 10
+    },
+    {
+      "name": "10",
+      "setup": "",
+      "run": "./main",
+      "input": "+                     \r\nSenyum Sehat,Pepsodent\r\n+  \r\nAnti Kerut Anti Bocor,Charm\r\n+\r\nGuguga gagagu gagaga,Mami Poko\r\n+\r\nEnak Sih Tapi Rela Bagi2,Silver Queen     \r\n<\r\n>\r\n-\r\n-\r\n>\r\nR\r\nE",
+      "output": "Now Playing:\r\n-> Senyum Sehat oleh Pepsodent\r\n   Anti Kerut Anti Bocor oleh Charm",
+      "comparison": "included",
+      "timeout": 1,
+      "points": 10
+    }
+  ]
+}

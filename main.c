@@ -132,7 +132,7 @@ int main()
             token = strtok(NULL, "\0");
             strcpy(songBuf.judul, token);
 
-            push(currPlaylist, songBuf);
+            // push(currPlaylist, songBuf);
             numberofsong++;
             break;
         }

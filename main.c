@@ -134,6 +134,7 @@ int main()
 //             }
 
             token = strtok(str, ",");
+            strcpy(songBuf.penyanyi, token);
 //             printf("%s\n", token);
 //             for (int i = 0; i < strlen(str); i++)
 //             {
@@ -141,13 +142,14 @@ int main()
 //             }
             
             token = strtok(NULL, "\0");
+            strcpy(songBuf.judul, token);
 //             printf("%s\n", token);
 //             for (int i = 0; i < strlen(token); i++)
 //             {
 //                 songBuf.judul[i] = token[i];
 //             }
 
-            // push(currPlaylist, songBuf);
+            push(currPlaylist, songBuf);
             numberofsong++;
             break;
         }

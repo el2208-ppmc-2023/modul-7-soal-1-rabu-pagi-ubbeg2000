@@ -124,8 +124,7 @@ int main()
         case '+':
         {
             printf("Masukkan Nama Lagu dan Penyanyi: ");
-            scanf("%c", &temp);
-            scanf("%[^\n]%*c", str);
+            scanf(" %[^\n]%*c", str);
             
             printf("%s\n", str);
 //             for (int i = 0; i < strlen(str); i++)

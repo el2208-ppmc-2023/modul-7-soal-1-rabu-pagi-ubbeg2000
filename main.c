@@ -1,5 +1,5 @@
 /** EL2208 Praktikum Pemecahan Masalah dengan C 2022/2023
- *   Modul               : 
+ *   Modul               :
  *   Hari dan Tanggal    :
  *   Nama (NIM)          :
  *   Nama File           : main.c
@@ -28,7 +28,6 @@ typedef struct stack_playlist
     struct node_stack *top;
 
 } stack;
-
 
 int isEmptyPlaylist(stack *playlist)
 {
@@ -98,7 +97,6 @@ void showPlaylist(stack *playlist, int playIndex)
     }
 }
 
-
 int main()
 {
     stack *currPlaylist;
@@ -106,7 +104,7 @@ int main()
     struct song songBuf;
     char str[75];
     currPlaylist = (stack *)malloc(sizeof(stack));
-    //Inisialisasi Stack
+    // Inisialisasi Stack
     currPlaylist->top = NULL;
     char temp;
 
@@ -121,66 +119,69 @@ int main()
 
         printf("\nMasukkan Perintah: ");
         scanf("%c", &cmd);
-        
-        switch(cmd){
-            case '+':
-                printf("Masukkan Nama Lagu dan Penyanyi: ");
-                scanf("%c",&temp);
-                scanf("%[^\n]", str);
-                char ch = '\n';
-                strncat(str, &ch, 1);        
-            
-                token = strtok(str, ",");
-                strcpy(songBuf.penyanyi, token);
-                token = strtok(NULL, ",");
-                strcpy(songBuf.judul, token);
 
-                //Masukkan ke dalam Stack
-                push(currPlaylist, songBuf);
-                //Update jumlah lagu
-                numberofsong++;
-                break;
-            
-            case '>':
-                if(nowIndex >= numberofsong-1){
-                    nowIndex = 0;
-                    }
-                else{
-                    nowIndex++;
-                    }
-                break;
-            case '<':
-                if(nowIndex <= 0){
-                    nowIndex = numberofsong-1;
-                }
-                else if(nowIndex >= numberofsong-1){
-                    nowIndex = numberofsong-1;
-                }
-                else
-                {
-                    nowIndex--;
-                }
-                break;
-            case 'R':
+        switch (cmd)
+        {
+        case '+':
+            printf("Masukkan Nama Lagu dan Penyanyi: ");
+            scanf("%c", &temp);
+            scanf("%[^\n]", str);
+            char ch = '\n';
+            strncat(str, &ch, 1);
+
+            token = strtok(str, ",");
+            strcpy(songBuf.penyanyi, token);
+            token = strtok(NULL, ",");
+            strcpy(songBuf.judul, token);
+
+            // Masukkan ke dalam Stack
+            push(currPlaylist, songBuf);
+            // Update jumlah lagu
+            numberofsong++;
+            break;
+
+        case '>':
+            if (nowIndex >= numberofsong - 1)
+            {
                 nowIndex = 0;
-                break;
-            case '-':
-                if(numberofsong == 0){
-                }
-                else{
+            }
+            else
+            {
+                nowIndex++;
+            }
+            break;
+        case '<':
+            if (nowIndex <= 0)
+            {
+                nowIndex = numberofsong - 1;
+            }
+            else if (nowIndex >= numberofsong - 1)
+            {
+                nowIndex = numberofsong - 1;
+            }
+            else
+            {
+                nowIndex--;
+            }
+            break;
+        case 'R':
+            nowIndex = 0;
+            break;
+        case '-':
+            if (numberofsong != 0)
+            {
                 pop(currPlaylist);
                 numberofsong--;
-                }
+            }
 
-                break;
+            break;
 
-             case 'E':
-                break;
-            default:
-                printf("Masukan Perintah Tidak Valid!");
-                break;
+        case 'E':
+            break;
+        default:
+            printf("Masukan Perintah Tidak Valid!");
+            break;
         }
-        getchar();
     }
     return 0;
 }

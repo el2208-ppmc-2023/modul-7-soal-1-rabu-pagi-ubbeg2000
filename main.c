@@ -128,17 +128,18 @@ int main()
             scanf("%[^\n]", str);
 
             token = strtok(str, ",");
-            for (int i = 0; i < strlen(token); i++)
-            {
-                songBuf.penyanyi[i] = token[i];
-            }
-            // strcpy(songBuf.penyanyi, token);
+            printf("%s\n, token);
+//             for (int i = 0; i < strlen(str); i++)
+//             {
+//                 songBuf.penyanyi[i] = token[i];
+//             }
+            
             token = strtok(NULL, "\0");
-            for (int i = 0; i < strlen(token); i++)
-            {
-                songBuf.judul[i] = token[i];
-            }
-            // strcpy(songBuf.judul, token);
+            printf("%s\n, token);
+//             for (int i = 0; i < strlen(token); i++)
+//             {
+//                 songBuf.judul[i] = token[i];
+//             }
 
             // push(currPlaylist, songBuf);
             numberofsong++;

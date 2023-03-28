@@ -122,6 +122,7 @@ int main()
         switch (cmd)
         {
         case '+':
+        {
             printf("Masukkan Nama Lagu dan Penyanyi: ");
             scanf("%c", &temp);
             scanf("%[^\n]", str);
@@ -134,8 +135,10 @@ int main()
             push(currPlaylist, songBuf);
             numberofsong++;
             break;
+        }
 
         case '>':
+        {
             if (nowIndex >= numberofsong - 1)
             {
                 nowIndex = 0;
@@ -145,7 +148,9 @@ int main()
                 nowIndex++;
             }
             break;
+        }
         case '<':
+        {
             if (nowIndex <= 0)
             {
                 nowIndex = numberofsong - 1;
@@ -159,22 +164,29 @@ int main()
                 nowIndex--;
             }
             break;
+        }
         case 'R':
+        {
             nowIndex = 0;
             break;
+        }
         case '-':
+        {
             if (numberofsong != 0)
             {
                 pop(currPlaylist);
                 numberofsong--;
             }
             break;
+        }
 
         case 'E':
             break;
         default:
+        {
             printf("Masukan Perintah Tidak Valid!");
             break;
+        }
         }
     }
     printf("LOBEBE\n");

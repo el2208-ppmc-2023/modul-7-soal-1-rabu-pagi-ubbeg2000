@@ -44,7 +44,7 @@
       "name": "5",
       "setup": "",
       "run": "./main",
-      "input": "-\r\n+\r\nJangan Buat Aku Kecewa,Perokok Rantai\r\n>\r\n+\r\nMama Muda,Papa Muda\r\n>\r\n- \r\n>\r\n+  \r\n>\r\nR\r\nE",
+      "input": "-\r\n+\r\nJangan Buat Aku Kecewa,Perokok Rantai\r\n>\r\n+\r\nMama Muda,Papa Muda\r\n>\r\n-\r\n>\r\n+\r\n>\r\nR\r\nE",
       "output": "-> Jangan Buat Aku Kecewa oleh Perokok Rantai\r\n   Kesedihan oleh Sia",
       "comparison": "included",
       "timeout": 1,
